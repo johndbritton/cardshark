@@ -8,7 +8,7 @@ module Cardshark
     SUITS = [:red, :green, :blue, :yellow]
     SPECIALS = [{:rank => :wild, :suit => :black}, {:rank => :wild_draw_four, :suit => :black}]
 
-    def initialize(opts={:include_jokers => false})
+    def initialize()
       @cards = Array.new()
       SUITS.each do |suit|
         RANKS.each do |rank|
