@@ -1,4 +1,5 @@
 require 'cardshark/deck'
+require 'cardshark/card'
 
 module Cardshark
   class FrenchDeck
