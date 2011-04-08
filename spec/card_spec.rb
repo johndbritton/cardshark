@@ -1,8 +1,8 @@
-require 'cardshark/deck'
+require 'cardshark/card'
 
 describe Cardshark::Card do
   before :all do
-    @deck = Cardshark::Deck.new()
+    @card = Cardshark::Card.new(:K, :H)
   end
   
   it 'has a rank' do
