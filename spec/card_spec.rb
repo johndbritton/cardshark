@@ -2,7 +2,7 @@ require 'cardshark/card'
 
 describe Cardshark::Card do
   before :all do
-    @card = Cardshark::Card.new(:K, :H)
+    @card = Cardshark::Card.new(:rank => :K, :suit => :H)
   end
   
   it 'has a rank' do
