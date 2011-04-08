@@ -6,9 +6,9 @@ Gem::Specification.new do |s|
   s.name        = "cardshark"
   s.version     = Cardshark::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TODO: Write your email address"]
-  s.homepage    = ""
+  s.authors     = ["John Britton - @johndbritton"]
+  s.email       = ["public@johndbritton.com"]
+  s.homepage    = "http://www.johndbritton.com"
   s.summary     = %q{TODO: Write a gem summary}
   s.description = %q{TODO: Write a gem description}
 
