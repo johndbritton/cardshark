@@ -24,4 +24,24 @@ describe Cardshark::UnoDeck do
       zeros[suit].should == 1
     end
   end
+
+  it 'should contain two of each rank other than zero in each suit' do
+    cards = Hash.new
+    Cardshark::UnoDeck::RANKS.each do |rank|
+      cards[rank] = Hash.new
+      Cardshark::UnoDeck::SUITS.each do |suit|
+        cards[rank][suit] = 0
+      end
+    end
+    @uno.cards.each do |card|
+      if Cardshark::UnoDeck::RANKS.include?(card.rank)      
+        cards[card.rank][card.suit] += 1
+      end
+    end
+    Cardshark::UnoDeck::RANKS.each do |rank|
+      Cardshark::UnoDeck::SUITS.each do |suit|
+        cards[rank][suit].should == 2 unless rank == :zero
+      end
+    end
+  end
 end
