@@ -4,23 +4,17 @@ require 'cardshark/card'
 module Cardshark
   class UnoDeck
     include Deck
-    RANKS = [:zero, :one, :two, :three, :four, :five, :six, :seven, :eight, :nine, :skip, :draw_two, :reverse]
+    RANKS = [:one, :two, :three, :four, :five, :six, :seven, :eight, :nine, :skip, :draw_two, :reverse]
+    ZERO = [:zero]
     SUITS = [:red, :green, :blue, :yellow]
-    SPECIALS = [{:rank => :wild, :suit => :black}, {:rank => :wild_draw_four, :suit => :black}]
-
+    SPECIALS = [ :wild, :wild_draw_four]
+    SPECIAL_SUITS = [:black]
+    
     def initialize()
       @cards = Array.new()
-      SUITS.each do |suit|
-        RANKS.each do |rank|
-          @cards.push Card.new(:rank => rank, :suit => suit)
-          @cards.push Card.new(:rank => rank, :suit => suit) unless rank == :zero
-        end
-      end
-      SPECIALS.each do |special|
-        4.times do
-          @cards.push Card.new(:rank => special[:rank], :suit => special[:suit])
-        end
-      end
+      2.times { @cards += create_cards(SUITS, RANKS) }
+      @cards += create_cards(SUITS, ZERO)
+      4.times { @cards += create_cards(SPECIAL_SUITS, SPECIALS)}
     end
   end
 end

@@ -1,25 +1,20 @@
 require 'cardshark/deck'
 require 'cardshark/card'
-require 'cardshark/french_deck'
 
 module Cardshark
+  # Representation of the 108 Card deck used to play Canasta. Essentially it is two French Decks with the Jokers included.
   class CanastaDeck
     include Deck
     RANKS = [:ace, :two, :three, :four, :five, :six, :seven, :eight, :nine, :ten, :jack, :queen, :king]
     SUITS = [:spades, :hearts, :diamonds, :clubs]
-    SPECIALS = [{:rank => :joker, :suit => :red}, {:rank => :joker, :suit => :black}]
+    JOKERS = [:joker]
+    JOKER_SUITS = [:red, :black]
     
     def initialize
       @cards = Array.new()
       2.times do 
-        SUITS.each do |suit|
-          RANKS.each do |rank|
-            @cards.push Card.new(:rank => rank, :suit => suit)
-          end
-        end
-        SPECIALS.each do |special|
-          @cards.push Card.new(:rank => special[:rank], :suit => special[:suit])
-        end
+        @cards += create_cards(SUITS, RANKS)
+        @cards += create_cards(JOKER_SUITS, JOKERS)
       end
     end
   end
