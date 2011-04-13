@@ -1,7 +1,7 @@
 require 'cardshark/piquet_deck'
 
 describe Cardshark::PiquetDeck do
-  #create a french (standard) deck
+  #create a piquet deck
   before :all do
     @piquet = Cardshark::PiquetDeck.new
   end

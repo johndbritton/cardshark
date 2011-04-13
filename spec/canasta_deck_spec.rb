@@ -1,7 +1,7 @@
 require 'cardshark/canasta_deck'
 
 describe Cardshark::CanastaDeck do
-  #create a french (standard) deck
+  #create a canasta deck
   before :all do
     @canasta = Cardshark::CanastaDeck.new
   end
