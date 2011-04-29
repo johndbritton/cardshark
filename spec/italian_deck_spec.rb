@@ -7,6 +7,6 @@ describe Cardshark::ItalianDeck do
   end
 
   it 'should contain 40 cards' do
-    @italian.size.should eql(40)
+    @italian.size.should == 40
   end
 end
