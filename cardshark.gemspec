@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ["John Britton - @johndbritton"]
   s.email       = ["public@johndbritton.com"]
   s.homepage    = "http://www.johndbritton.com"
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{A library for various types of card decks}
+  s.description = %q{Supports Canasta, French, Piquet, and Uno Decks}
 
   s.rubyforge_project = "cardshark"
 
