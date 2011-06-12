@@ -3,21 +3,21 @@ module Cardshark
     def size
       @cards.size
     end
-    
+
     def cards
       @cards
     end
-    
+
     def shuffle!
       @cards.shuffle!
       @shuffled = true
     end
-    
+
     def shuffled?
       return false unless @shuffled
       true
     end
-    
+
     # Helper method that builds cards
     def create_cards(suits, ranks)
       created_cards = Array.new
@@ -28,6 +28,6 @@ module Cardshark
       end
       created_cards
     end
-    
+
   end
 end
