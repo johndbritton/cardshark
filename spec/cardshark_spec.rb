@@ -2,5 +2,5 @@
 
 require 'cardshark'
 
-describe Cardshark do
+RSpec.describe Cardshark do
 end

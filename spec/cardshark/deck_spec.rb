@@ -2,5 +2,5 @@
 
 require 'cardshark/deck'
 
-describe Cardshark::Deck do
+RSpec.describe Cardshark::Deck do
 end

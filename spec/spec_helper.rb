@@ -9,12 +9,12 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  config.disable_monkey_patching!
+  config.example_status_persistence_file_path = 'spec/examples.txt'
+  config.filter_run_when_matching :focus
+  config.order = :random
+  config.profile_examples = 10
   config.shared_context_metadata_behavior = :apply_to_host_groups
-  #   config.filter_run_when_matching :focus
-  #   config.example_status_persistence_file_path = "spec/examples.txt"
-  #   config.disable_monkey_patching!
-  #   config.warnings = true
-  #   config.profile_examples = 10
-  #   config.order = :random
-  #   Kernel.srand config.seed
+  Kernel.srand config.seed
+  config.warnings = true
 end
