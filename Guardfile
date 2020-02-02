@@ -1,5 +1,7 @@
-guard :rspec, cmd: "bundle exec rspec", failed_mode: :keep do
-  require "guard/rspec/dsl"
+# frozen_string_literal: true
+
+guard :rspec, cmd: 'bundle exec rspec', failed_mode: :keep do
+  require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
 
   rspec = dsl.rspec
