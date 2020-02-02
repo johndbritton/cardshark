@@ -1,3 +1,2 @@
 module Cardshark
-  # Your code goes here...
 end
