@@ -1,27 +1,10 @@
 # frozen_string_literal: true
 
 require 'cardshark/error'
+require 'cardshark/dimension'
 
 module Cardshark
   class Rank
-    @ranks = []
-
-    class << self
-      def new
-        @new ||= super
-      end
-
-      def inherited(subclass)
-        @ranks.push(subclass)
-      end
-
-      def all
-        @ranks
-      end
-    end
-
-    def initialize
-      raise Error::AbstractClass if self.class == Rank
-    end
+    include Dimension
   end
 end

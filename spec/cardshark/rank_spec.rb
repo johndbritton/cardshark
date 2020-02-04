@@ -65,6 +65,6 @@ RSpec.describe Cardshark::Rank do
   # This cleans up metadata about subclasses so that
   # these specs can be run reliably in any order
   def clear_subclass_metadata
-    described_class.instance_variable_set(:@ranks, [])
+    described_class.instance_variable_set(:@subclasses, [])
   end
 end
