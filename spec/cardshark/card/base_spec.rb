@@ -27,59 +27,70 @@ RSpec.describe Cardshark::Card::Base do
   let(:king)     { Class.new(rank).new }
 
   describe '::new' do
-    context 'invalid arguments' do
-      context 'missing arguments' do
-        it 'raises an ArgumentError' do
-          expect { described_class.new }.to raise_exception(ArgumentError)
-        end
-      end
-
-      context 'incorrect type' do
-        it 'raises an ArgumentError' do
-          expect { described_class.new('invalid arguments') }
-            .to raise_exception(ArgumentError)
-        end
-      end
-
-      context 'empty array' do
-        it 'raises an ArgumentError' do
-          expect { described_class.new([]) }.to raise_exception(ArgumentError)
-        end
-      end
-
-      context 'array with incorrect values' do
-        it 'raises an ArgumentError' do
-          expect { described_class.new(%w[incorrect values]) }
-            .to raise_exception(ArgumentError)
-        end
-      end
-
-      context 'classes instead of instances' do
-        it 'raises an ArgumentError' do
-          expect { described_class.new([Class.new(rank)]) }
-            .to raise_exception(ArgumentError)
-        end
-      end
-
-      context 'multiple distinct values from the same dimension' do
-        it 'raises an ArgumentError' do
-          expect { described_class.new([ace, king]) }
-            .to raise_exception(ArgumentError)
-        end
+    context 'valid arguments' do
+      it 'raises a Cardshark::Error::AbstractClass' do
+        expect { described_class.new([ace, spades]) }
+          .to raise_error(Cardshark::Error::AbstractClass)
       end
     end
 
-    context 'valid arguments' do
-      context 'only one value from one dimension' do
-        it 'returns a Card' do
-          expect(described_class.new([ace])).to be_a(described_class)
+    context 'when subclassed' do
+      let(:subclass) { Class.new(described_class) }
+
+      context 'invalid arguments' do
+        context 'missing arguments' do
+          it 'raises an ArgumentError' do
+            expect { subclass.new }.to raise_exception(ArgumentError)
+          end
+        end
+
+        context 'incorrect type' do
+          it 'raises an ArgumentError' do
+            expect { subclass.new('invalid arguments') }
+              .to raise_exception(ArgumentError)
+          end
+        end
+
+        context 'empty array' do
+          it 'raises an ArgumentError' do
+            expect { subclass.new([]) }.to raise_exception(ArgumentError)
+          end
+        end
+
+        context 'array with incorrect values' do
+          it 'raises an ArgumentError' do
+            expect { subclass.new(%w[incorrect values]) }
+              .to raise_exception(ArgumentError)
+          end
+        end
+
+        context 'classes instead of instances' do
+          it 'raises an ArgumentError' do
+            expect { subclass.new([Class.new(rank)]) }
+              .to raise_exception(ArgumentError)
+          end
+        end
+
+        context 'multiple distinct values from the same dimension' do
+          it 'raises an ArgumentError' do
+            expect { subclass.new([ace, king]) }
+              .to raise_exception(ArgumentError)
+          end
         end
       end
 
-      context 'multiple distinct values from different dimensions' do
-        it 'returns a Card' do
-          expect(described_class.new([ace, spades]))
-            .to be_a(described_class)
+      context 'valid arguments' do
+        context 'only one value from one dimension' do
+          it 'returns a Card' do
+            expect(subclass.new([ace])).to be_a(subclass)
+          end
+        end
+
+        context 'multiple distinct values from different dimensions' do
+          it 'returns a Card' do
+            expect(subclass.new([ace, spades]))
+              .to be_a(subclass)
+          end
         end
       end
     end

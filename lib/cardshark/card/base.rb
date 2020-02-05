@@ -5,7 +5,23 @@ require 'cardshark/dimension'
 module Cardshark
   module Card
     class Base
+      @abstract = true
+
+      def self.abstract?
+        if @abstract
+          true
+        else
+          false
+        end
+      end
+
+      def self.inherited(subclass)
+        subclass.instance_variable_set(:@abstract, false)
+      end
+
       def initialize(dimensions)
+        raise Error::AbstractClass if self.class.abstract?
+
         @dimensions = dimensions
         raise ArgumentError unless valid_dimensions?
       end
