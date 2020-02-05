@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'cardshark/card'
+require 'cardshark/card/base'
 
-RSpec.describe Cardshark::Card do
+RSpec.describe Cardshark::Card::Base do
   let(:suit)     { Class.new { include Cardshark::Dimension } }
 
   let(:clubs)    { Class.new(suit).new }
