@@ -15,7 +15,7 @@ module Cardshark
       end
 
       def abstract?
-        if @abstract
+        if instance_variable_defined?(:@abstract) && @abstract == true
           true
         else
           false

@@ -8,13 +8,6 @@ RSpec.describe Cardshark::Dimension do
       Class.new { include Cardshark::Dimension }
     end
 
-    describe '::new' do
-      it 'raises a Cardshark::Error::AbstractClass' do
-        expect { klass.new }
-          .to raise_error(Cardshark::Error::AbstractClass)
-      end
-    end
-
     describe '::all' do
       before { @result = klass.all }
 
@@ -46,12 +39,6 @@ RSpec.describe Cardshark::Dimension do
       end
     end
 
-    describe '::abstract' do
-      it 'returns true' do
-        expect(klass.abstract?).to eq(true)
-      end
-    end
-
     context 'when subclassed' do
       before { @subclass = Class.new(klass) }
       after { clear_subclass_metadata }
@@ -76,12 +63,6 @@ RSpec.describe Cardshark::Dimension do
 
         it 'behaves as a singleton' do
           expect(@subclass.new).to equal(@subclass.new)
-        end
-      end
-
-      describe '::abstract' do
-        it 'returns false' do
-          expect(@subclass.abstract?).to eq(false)
         end
       end
     end
