@@ -1,4 +1,4 @@
-source "http://rubygems.org"
+# frozen_string_literal: true
 
-# Specify your gem's dependencies in cardshark.gemspec
+source 'http://rubygems.org'
 gemspec
