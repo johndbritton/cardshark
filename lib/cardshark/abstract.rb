@@ -10,16 +10,14 @@ module Cardshark
     end
 
     module ClassMethods
-      def new
-        @new ||= super
-      end
-
-      def abstract?
-        if instance_variable_defined?(:@abstract) && @abstract == true
-          true
-        else
-          false
+      def new(*)
+        if instance_variable_defined?(:@abstract)
+          if instance_variable_get(:@abstract) == true
+            raise Error::AbstractClass
+          end
         end
+
+        super
       end
 
       private
@@ -27,10 +25,6 @@ module Cardshark
       def inherited(subclass)
         subclass.instance_variable_set(:@abstract, false)
       end
-    end
-
-    def initialize
-      raise Error::AbstractClass if self.class.abstract?
     end
   end
 end

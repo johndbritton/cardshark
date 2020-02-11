@@ -4,31 +4,46 @@ require 'cardshark/abstract'
 require 'cardshark/error'
 
 module Cardshark
-  module Dimension
-    def self.included(base)
-      base.class_eval { include Cardshark::Abstract }
-      base.instance_variable_set(:@subclasses, [])
-      base.instance_variable_set(:@dimension_base, true)
-      base.extend(ClassMethods)
+  class Dimension
+    include Abstract
+
+    def self.new(id)
+      raise ArgumentError if id.class != Symbol
+
+      if instances[id].nil?
+        instances[id] = super
+      else
+        instances[id]
+      end
     end
 
-    module ClassMethods
-      def all
-        @subclasses
-      end
+    def self.all
+      instances.values
+    end
 
+    def initialize(id)
+      @id = id
+    end
+
+    def to_s
+      id.to_s.capitalize
+    end
+
+    private
+
+    class << self
       private
 
-      def inherited(subclass)
-        parent = subclass.superclass
-
-        unless parent.instance_variable_defined?(:@dimension_base) &&
-               parent.instance_variable_get(:@dimension_base) == true
-          raise Error::DimensionInheritanceLimit
-        end
-
-        @subclasses.push(subclass)
+      def instances
+        @instances ||= {}
       end
+      attr_writer :instances
+    end
+
+    attr_accessor :id
+
+    def inherited(_subclass)
+      raise Error::DimensionInheritanceLimit
     end
   end
 end
