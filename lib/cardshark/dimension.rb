@@ -21,6 +21,14 @@ module Cardshark
       instances.values
     end
 
+    def self.id
+      if name.nil?
+        object_id.to_s.downcase.to_sym
+      else
+        name.split('::').last.gsub(/(.)([A-Z])/, '\1_\2').downcase.to_sym
+      end
+    end
+
     def initialize(id)
       @id = id
     end

@@ -80,6 +80,29 @@ RSpec.describe Cardshark::Dimension do
         end
       end
     end
+
+    describe '::id' do
+      it 'returns a symbol' do
+        expect(subclass.id.class).to eq(Symbol)
+      end
+
+      context 'named subclass' do
+        before { class NamedClassExample < described_class; end }
+        after { Object.send(:remove_const, 'NamedClassExample') }
+
+        it 'returns a symbol version of the class name' do
+          expect(NamedClassExample.id).to eq(:named_class_example)
+        end
+      end
+    end
+
+    describe '#to_s' do
+      let(:instance) { subclass.new(:name) }
+
+      it 'returns a capitalized string' do
+        expect(instance.to_s).to eq('Name')
+      end
+    end
   end
 
   # This cleans up metadata about subclasses so that
