@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['John Britton - @johndbritton']
   s.email       = ['public@johndbritton.com']
-  s.homepage    = 'http://www.johndbritton.com'
-  s.summary     = ''
-  s.description = ''
+  s.homepage    = 'https://github.com/johndbritton/cardshark'
+  s.summary     = 'A library for building decks of cards.'
+  s.description = 'A library for building decks of cards.'
 
   s.rubyforge_project = 'cardshark'
 
